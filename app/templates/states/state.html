@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+{% block content %}
+  <div class="content container" >
+    {% for state in response %}
+    <div class="state container">
+    <h1> {{ statedict.get(state.state) }} </h2>
+    <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Tested Positive</th>
+      <th scope="col">Tested Negative</th>
+      <th scope="col">Hospitalized Currently</th>
+       <th scope="col">Hospitalized Cumulatively</th>     
+      <th scope="col">Recovered</th>
+      <th scope="col">Deaths</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">{{ state.positive }}</th>
+      <td>{{ state.negative }}</td>
+      <td>{{ state.hospitalizedCurrently }}</td>
+      {% if state.hospitalizedCumulatively != null: %}
+      <td>{{ state.hospitalizedCumulatively }}</td>
+      {% else %}
+      <td>{{ state.hospitalized }}</td>
+      {% endif %}
+      <td>{{ state.recovered }}</td>
+      <td>{{ state.death }}</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+    {% endfor %}
+  </div>
+{% endblock %}
